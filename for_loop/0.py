@@ -28,3 +28,18 @@ print("======")
 for i in range(1, 11, 2):
     print(f"i is {i}")
 print("======")
+
+
+# enumerate function
+# enumerate adalah fungsi built-in di Python yang digunakan untuk mengiterasi sebuah iterable (seperti list, tuple, atau string) dan mendapatkan indeks dari setiap elemen dalam iterable tersebut. Fungsi ini mengembalikan objek enumerasi yang berisi pasangan indeks dan nilai dari elemen-elemen dalam iterable.
+# Ini sangat berguna ketika kita ingin mengakses indeks elemen saat melakukan iterasi, tanpa perlu mengelola variabel indeks secara manual.
+# Contoh penggunaan enumerate:
+# Misalkan kita memiliki sebuah list dan ingin mencetak setiap elemen beserta indeksnya:
+l1 = ["eat", "sleep", "code"]
+for ele in enumerate(l1):
+    print(f"{ele[0]}. {ele[1]}, type is {type(ele)}")
+print("======")
+
+l2 = ["eat", "sleep", "code"]
+for i, ele in enumerate(l2, start=1):
+    print(f"{i}. {ele}, type is {type(ele)}")

@@ -50,3 +50,8 @@ print(x) # menampilkan elemen yang dihapus
 students = ["Galang", "Sugeng", "Bobon", "sugeng"]
 total_students = len(students) # menampilkan jumlah elemen di dalam list
 print(total_students) # menampilkan jumlah elemen di dalam list
+
+# untuk melihat banyaknya elemen yang sama di dalam list, kita bisa menggunakan method count()
+students = ["Galang", "Sugeng", "Bobon", "sugeng"]
+count_sugeng = students.count("Sugeng") # menghitung jumlah elemen "Sugeng" di dalam list
+print(count_sugeng) # menampilkan jumlah elemen "Sugeng" di dalam list

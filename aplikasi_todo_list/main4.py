@@ -1,8 +1,8 @@
 # fungsi intro todo list sederhana
 def intro():
-    print("###############################")
-    print("## Aplikasi Todo List Python ##")
-    print("-------------------------------")
+    print("#############################################################################")
+    print("                        Aplikasi Todo List Python                            ")
+    print("-----------------------------------------------------------------------------")
 # endof intro
 
 # fungsi ambil input nama depan dan nama belakang
@@ -14,11 +14,9 @@ def name_input():
 
 #fungsi menu utama
 def main_menu():
-    print("ketik 1 untuk memasukkan todo")
-    print('ketik 2 untuk melihat todo anda')
-    print("ketik 3 untuk menghapus todo anda")
-    print("ketik 4 untuk menghapus semua todo anda")
-    print("ketik 5 untuk keluar dari aplikasi")
+    print("*****************************************************************************")
+    print("1. add todo | 2. lihat todo | 3. hapus todo | 4. hapus semua todo | 5. keluar")
+    print("*****************************************************************************")
 # end of fungsi menu utama
 
 # fungsi validasi input user
@@ -54,6 +52,7 @@ def user_input_action(user_input):
 
 # fungsi menyapa user
 def show_username(full_name):
+    full_name = full_name.upper()
     print(f"Selamat datang, {full_name}!")
 # end of fungsi menyapa user
 
@@ -85,47 +84,30 @@ def exit_program(todos):
 
 # fungsi menampilkan todo
 def show_todos(todos):
-    # cek jika todos kosong maka tampilkan pesan bahwa belum ada todo dengan menggunakan if dan length
-    # cara 1
-    if len(todos) > 0:
-        print("Daftar Todo Anda:")
-        # cara 1
-        for i, todo in enumerate(todos, start=1):
-            print(f"{i}. {todo}")
-    else:
-        print("Anda belum memasukkan todo apapun.")
-    
-    
-    # cara 2
-    """
     if not todos:
         print("Anda belum memasukkan todo apapun.")
     else:
         print("Todo anda:")
-        # cara 1
+        """
         num = 1
         for todo in todos:
             print(f"{num}. {todo}")
             num += 1
-        
-        # cara 2 bisa menggunakan enumerate untuk menghindari penggunaan variabel tambahan dan ini lebih superior
+        """
+        #bisa menggunakan enumerate untuk menghindari penggunaan variabel tambahan dan ini lebih superior
         for i, todo in enumerate(todos, start=1):
             print(f"{i}. {todo}")
-    """
 # end of fungsi menampilkan todo
 
 # fungsi untuk menghapus todo
 def delete_todo(todos):
-    while True:
-        todo_delete = int(input("Masukkan todo yang ingin dihapus, ketik 0 untuk batal: ")) - 1
-        # todos.pop(todo_delete) # yang terjadi disini adalah kita menghapus todo berdasarkan index yang dimasukkan oleh user. misal todo kita berada di nomor 1, akan tetapi index pada list dimulai dari 0, sehingga kita harus mengurangi 1 dari input user.
-        if todo_delete == -1:
-            return todos
-        elif todo_delete >=0 and todo_delete < len(todos):
-            todos.pop(todo_delete)
-        else:
-            print("Input tidak valid. Silakan masukkan nomor todo yang benar.")
-
+    todo_delete = int(input("Masukkan todo yang ingin dihapus, ketik 0 untuk batal: ")) - 1
+    # todos.pop(todo_delete) # yang terjadi disini adalah kita menghapus todo berdasarkan index yang dimasukkan oleh user. misal todo kita berada di nomor 1, akan tetapi index pada list dimulai dari 0, sehingga kita harus mengurangi 1 dari input user.
+    if todo_delete == -1:
+        return todos
+    else:
+        todos.pop(todo_delete)
+        return todos
 # end of fungsi untuk menghapus todo
 def delete_all_todos(todos):
     confirm = input("Apakah anda yakin ingin menghapus semua todo? (y/n): ")
@@ -140,7 +122,7 @@ def delete_all_todos(todos):
 intro()
 full_name = name_input()
 show_username(full_name)
-todos = ["todo1", "todo2", "todo3"] #-> ini adalah contoh list yang sudah ada
+todos = ["makan", "minum", "tidur"] #-> ini adalah contoh list yang sudah ada
 while True:
     main_menu()
     user_input = get_user_input()

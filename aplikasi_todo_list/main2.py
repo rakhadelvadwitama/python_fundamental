@@ -77,7 +77,7 @@ print(f"todos anda hari ini adalah: {todos}, terima kasih telah memasukkan {len(
 # fungsi untuk memasukkan todo
 todos = []  # list untuk menyimpan todo
 while True:
-    todo = input("Masukkan todo (atau 'exit' untuk keluar): ")
+    todo = input("Masukkan todo atau 'exit' untuk keluar: ")
     if todo.lower() == 'exit':
         break
     else:
@@ -94,6 +94,7 @@ else:
 # fungsi akhir aplikasi
 exit_ = input("Apakah anda ingin keluar dari aplikasi? (y/n): ")
 if exit_ == 'y':
+    print(f"Todos anda: {todos}, jumlah todos anda: {len(todos)}")
     print("Terima kasih telah menggunakan aplikasi Todo List Python!")
     exit()
 elif exit_ == 'n':
