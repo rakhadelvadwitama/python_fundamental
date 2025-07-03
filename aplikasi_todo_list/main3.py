@@ -1,3 +1,5 @@
+import json
+
 # fungsi intro todo list sederhana
 def intro():
     print("###############################")
@@ -26,7 +28,7 @@ def get_user_input():
     while True:
         try:
             user_input = int(input("Masukkan pilihan anda: "))
-            if user_input in [1, 2, 3, 4,5]:
+            if user_input in [1, 2, 3, 4, 5]:
                 return user_input
             else:
                 print("Input tidak valid. Silakan masukkan angka sesuai pilihan yang tersedia.")
@@ -76,6 +78,9 @@ def exit_program(todos):
             print("Anda belum memasukkan todo apapun.")
         else:
             print(f"Todos anda: {todos}, jumlah todos anda: {len(todos)}")
+        data = {"todos": todos}
+        with open('todos.json', 'w') as file:
+            json.dump(data, file)
         exit()
     elif exit_ == 'n':
         print("Anda memilih untuk tetap menggunakan aplikasi.")
@@ -117,12 +122,12 @@ def show_todos(todos):
 # fungsi untuk menghapus todo
 def delete_todo(todos):
     while True:
-        todo_delete = int(input("Masukkan todo yang ingin dihapus, ketik 0 untuk batal: ")) - 1
+        todo_delete = int(input("Masukkan todo yang ingin dihapus, ketik 0 untuk batal: "))
         # todos.pop(todo_delete) # yang terjadi disini adalah kita menghapus todo berdasarkan index yang dimasukkan oleh user. misal todo kita berada di nomor 1, akan tetapi index pada list dimulai dari 0, sehingga kita harus mengurangi 1 dari input user.
-        if todo_delete == -1:
+        if todo_delete == 0:
             return todos
-        elif todo_delete >=0 and todo_delete < len(todos):
-            todos.pop(todo_delete)
+        elif todo_delete > 0 and todo_delete < len(todos):
+            todos.pop(todo_delete-1)
         else:
             print("Input tidak valid. Silakan masukkan nomor todo yang benar.")
 
@@ -134,28 +139,42 @@ def delete_all_todos(todos):
         return todos
     else:
         return todos
-    
+# end of fungsi untuk menghapus semua todo
 
+# read todos from file json
+def read_todos():
+    try:
+        with open('todos.json', 'r') as file:
+            data = json.load(file)
+            return data.get("todos", [])
+    except FileNotFoundError:
+        return []
+    except json.JSONDecodeError:
+        return []
 
-intro()
-full_name = name_input()
-show_username(full_name)
-todos = ["todo1", "todo2", "todo3"] #-> ini adalah contoh list yang sudah ada
-while True:
-    main_menu()
-    user_input = get_user_input()
-    print(f"user input anda adalah: {user_input}")
-    if user_input == 1:
-        todos = add_todos(todos) #-> seperti ini disebut overriding variable
-        print("ini harusnya keluar dari fitur")
-    elif user_input == 2:
-        show_todos(todos)
-    elif user_input == 3:
-        show_todos(todos)
-        todos = delete_todo(todos)
-    elif user_input == 4:
-        todos = delete_all_todos(todos)
-    elif user_input == 5:
-        exit_program(todos)
-    else:
-        print('Pilihan tidak valid.')
+if __name__ == "__main__":
+    # __name__ == "__main__" digunakan untuk readability
+
+    intro()
+    full_name = name_input()
+    show_username(full_name)
+    todos = read_todos()
+    while True:
+        main_menu()
+        user_input = get_user_input()
+        print(f"user input anda adalah: {user_input}")
+        if user_input == 1:
+            todos = add_todos(todos) #-> seperti ini disebut overriding variable
+            print("kembali ke menu utama")
+        elif user_input == 2:
+            show_todos(todos)
+        elif user_input == 3:
+            show_todos(todos)
+            todos = delete_todo(todos)
+            print("kembali ke menu utama")
+        elif user_input == 4:
+            todos = delete_all_todos(todos)
+        elif user_input == 5:
+            exit_program(todos)
+        else:
+            print('Pilihan tidak valid.')
