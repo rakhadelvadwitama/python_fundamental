@@ -1,0 +1,34 @@
+{
+  "user1": {
+    "name": "John Doe",
+    "password1": "password",
+    "password2": "password",
+    "todos": [
+      {
+        "name": "todo1",
+        "description": "deskripsi todo1",
+        "isImportance": true,
+        "notes": ["catatan1", "catatan2"]
+      },
+      {
+        "name": "todo2",
+        "description": "deskripsi todo2",
+        "isImportance": true,
+        "notes": ["catatan3", "catatan4"]
+      }
+    ]
+  },
+  "user2": {
+    "name": "Jane Smith",
+    "password1": "123456",
+    "password2": "123456",
+    "todos": [
+      {
+        "name": "todo1",
+        "description": "deskripsi todo3",
+        "isImportance": false,
+        "notes": ["catatan5", "catatan6"]
+      }
+    ]
+  }
+}
